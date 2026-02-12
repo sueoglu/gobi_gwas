@@ -1,0 +1,29 @@
+PLINK v1.9.0-b.7.11 64-bit (19 Aug 2025)
+Options in effect:
+  --bfile /Users/oykusuoglu/gobi/gobi_gwas/oyku/data/ALL.chr22_GRCh38.genotypes.20170504
+  --freq
+  --missing
+  --out /Users/oykusuoglu/gobi/gobi_gwas/oyku/data/qc/initial_qc
+
+Hostname: Oykus-MacBook-Pro.local
+Working directory: /Users/oykusuoglu/gobi/gobi_gwas/oyku
+Start time: Thu Feb 12 17:43:19 2026
+
+Random number seed: 1770914599
+16384 MB RAM detected; reserving 8192 MB for main workspace.
+109827 variants loaded from .bim file.
+2504 people (0 males, 0 females, 2504 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to
+/Users/oykusuoglu/gobi/gobi_gwas/oyku/data/qc/initial_qc.nosex .
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 2504 founders and 0 nonfounders present.
+Calculating allele frequencies... done.
+Total genotyping rate is 0.999911.
+--freq: Allele frequencies (founders only) written to
+/Users/oykusuoglu/gobi/gobi_gwas/oyku/data/qc/initial_qc.frq .
+--missing: Sample missing data report written to
+/Users/oykusuoglu/gobi/gobi_gwas/oyku/data/qc/initial_qc.imiss, and
+variant-based missing data report written to
+/Users/oykusuoglu/gobi/gobi_gwas/oyku/data/qc/initial_qc.lmiss.
+
+End time: Thu Feb 12 17:43:19 2026
