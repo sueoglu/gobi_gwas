@@ -1,0 +1,26 @@
+PLINK v1.9.0-b.7.11 64-bit (19 Aug 2025)
+Options in effect:
+  --bfile data/final/chr22_step3_sampleqc
+  --indep-pairwise 200 50 0.2
+  --out chr22_prune
+
+Hostname: Oykus-MacBook-Pro.local
+Working directory: /Users/oykusuoglu/gobi/gobi_gwas/oyku
+Start time: Fri Feb 13 19:46:26 2026
+
+Random number seed: 1771008386
+16384 MB RAM detected; reserving 8192 MB for main workspace.
+59743 variants loaded from .bim file.
+2504 people (0 males, 0 females, 2504 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to chr22_prune.nosex .
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 2504 founders and 0 nonfounders present.
+Calculating allele frequencies... done.
+Total genotyping rate is in [0.9999995, 1).
+59743 variants and 2504 people pass filters and QC.
+Note: No phenotypes present.
+Pruned 54552 variants from chromosome 22, leaving 5191.
+Pruning complete.  54552 of 59743 variants removed.
+Marker lists written to chr22_prune.prune.in and chr22_prune.prune.out .
+
+End time: Fri Feb 13 19:46:26 2026
