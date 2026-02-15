@@ -4,16 +4,16 @@ Options in effect:
   --clump gwas_for_clump.txt
   --clump-field P
   --clump-kb 500
-  --clump-p1 1
+  --clump-p1 0.1
   --clump-r2 0.1
   --clump-snp-field SNP
   --out chr22_clumped
 
 Hostname: Oykus-MacBook-Pro.local
 Working directory: /Users/oykusuoglu/gobi/gobi_gwas/oyku
-Start time: Sun Feb 15 15:36:47 2026
+Start time: Sun Feb 15 16:13:43 2026
 
-Random number seed: 1771166207
+Random number seed: 1771168423
 16384 MB RAM detected; reserving 8192 MB for main workspace.
 59743 variants loaded from .bim file.
 2504 people (0 males, 0 females, 2504 ambiguous) loaded from .fam.
@@ -24,7 +24,7 @@ Calculating allele frequencies... done.
 Total genotyping rate is in [0.9999995, 1).
 59743 variants and 2504 people pass filters and QC.
 Note: No phenotypes present.
---clump: 4236 clumps formed from 59740 top variants.
+--clump: 1084 clumps formed from 7459 top variants.
 Results written to chr22_clumped.clumped .
 
-End time: Sun Feb 15 15:36:49 2026
+End time: Sun Feb 15 16:13:43 2026
