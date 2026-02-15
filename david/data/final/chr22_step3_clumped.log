@@ -1,0 +1,30 @@
+PLINK v1.9.0-b.7.11 64-bit (19 Aug 2025)
+Options in effect:
+  --bfile C:\Users\david\PycharmProjects\GoBi\gobi_gwas\david\data\qc\chr22_step3_sampleqc
+  --clump C:\Users\david\PycharmProjects\GoBi\gobi_gwas\david\gwas_results.txt
+  --clump-r2 0.1
+  --out C:\Users\david\PycharmProjects\GoBi\gobi_gwas\david\data\final\chr22_step3_clumped
+
+Hostname: DAVIVOBOOK
+Working directory: C:\Users\david\PycharmProjects\GoBi\gobi_gwas\david\plink_win64_20250819
+Start time: Sun Feb 15 17:44:25 2026
+
+Random number seed: 1771173865
+16062 MB RAM detected; reserving 8031 MB for main workspace.
+59743 variants loaded from .bim file.
+2504 people (0 males, 0 females, 2504 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to
+C:\Users\david\PycharmProjects\GoBi\gobi_gwas\david\data\final\chr22_step3_clumped.nosex
+.
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 2504 founders and 0 nonfounders present.
+Calculating allele frequencies... done.
+Total genotyping rate is in [0.9999995, 1).
+59743 variants and 2504 people pass filters and QC.
+Note: No phenotypes present.
+--clump: 239 clumps formed from 2094 top variants.
+Results written to
+C:\Users\david\PycharmProjects\GoBi\gobi_gwas\david\data\final\chr22_step3_clumped.clumped
+.
+
+End time: Sun Feb 15 17:44:27 2026
