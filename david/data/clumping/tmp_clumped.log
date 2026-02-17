@@ -3,28 +3,29 @@ Options in effect:
   --bfile data/preprocessing/chr22_preprocessed_train_subset
   --clump data/tmp_gwas_results/train_subset_gwas_results.txt
   --clump-field P
+  --clump-kb 200
   --clump-p1 1e-4
   --clump-p2 1e-2
-  --clump-r2 0.1
+  --clump-r2 0.07
   --clump-snp-field SNP
   --out data/clumping/tmp_clumped
 
 Hostname: DAVIVOBOOK
 Working directory: C:\Users\david\PycharmProjects\GoBi\gobi_gwas\david
-Start time: Tue Feb 17 20:44:11 2026
+Start time: Wed Feb 18 00:55:11 2026
 
-Random number seed: 1771357451
+Random number seed: 1771372511
 16062 MB RAM detected; reserving 8031 MB for main workspace.
 59743 variants loaded from .bim file.
-1752 people (0 males, 0 females, 1752 ambiguous) loaded from .fam.
+2003 people (0 males, 0 females, 2003 ambiguous) loaded from .fam.
 Ambiguous sex IDs written to data/clumping/tmp_clumped.nosex .
 Using 1 thread (no multithreaded calculations invoked).
-Before main variant filters, 1752 founders and 0 nonfounders present.
+Before main variant filters, 2003 founders and 0 nonfounders present.
 Calculating allele frequencies... done.
 Total genotyping rate is in [0.9999995, 1).
-59743 variants and 1752 people pass filters and QC.
+59743 variants and 2003 people pass filters and QC.
 Note: No phenotypes present.
---clump: 41 clumps formed from 760 top variants.
+--clump: 46 clumps formed from 925 top variants.
 Results written to data/clumping/tmp_clumped.clumped .
 
-End time: Tue Feb 17 20:44:11 2026
+End time: Wed Feb 18 00:55:11 2026
