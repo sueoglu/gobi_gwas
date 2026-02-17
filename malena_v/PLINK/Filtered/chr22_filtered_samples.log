@@ -1,0 +1,27 @@
+PLINK v1.90p 64-bit (6 Sep 2023)
+Options in effect:
+  --bfile /Users/malenavoss/GoBi_Theis/Blockteil/gobi_gwas/malena_v/PLINK/final/chr22_step3_sampleqc
+  --keep /Users/malenavoss/GoBi_Theis/Blockteil/gobi_gwas/malena_v/df_samples.txt
+  --make-bed
+  --out chr22_filtered_samples
+
+Hostname: Malenas-MacBook-Pro.fritz.box
+Working directory: /Users/malenavoss/GoBi_Theis/Blockteil/gobi_gwas/malena_v/PLINK/Filtered
+Start time: Tue Feb 17 15:23:53 2026
+
+Random number seed: 1771338233
+16384 MB RAM detected; reserving 8192 MB for main workspace.
+59743 variants loaded from .bim file.
+2504 people (0 males, 0 females, 2504 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to chr22_filtered_samples.nosex .
+--keep: 2504 people remaining.
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 2504 founders and 0 nonfounders present.
+Calculating allele frequencies... done.
+Total genotyping rate is in [0.9999995, 1).
+59743 variants and 2504 people pass filters and QC.
+Note: No phenotypes present.
+--make-bed to chr22_filtered_samples.bed + chr22_filtered_samples.bim +
+chr22_filtered_samples.fam ... done.
+
+End time: Tue Feb 17 15:23:53 2026
