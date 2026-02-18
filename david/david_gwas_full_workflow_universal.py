@@ -300,7 +300,7 @@ for h2 in h2s:
 
         selected_snps = clumped['SNP'].values
 
-        snp_ids = bim_train['snp'].values  # from full dataset
+        snp_ids = bim_train['snp'].values
 
         # Boolean mask of selected SNPs
         mask = np.isin(snp_ids, selected_snps)
