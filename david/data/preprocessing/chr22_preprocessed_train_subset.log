@@ -7,23 +7,23 @@ Options in effect:
 
 Hostname: DAVIVOBOOK
 Working directory: C:\Users\david\PycharmProjects\GoBi\gobi_gwas\david
-Start time: Tue Feb 17 20:39:51 2026
+Start time: Wed Feb 18 01:14:32 2026
 
-Random number seed: 1771357191
+Random number seed: 1771373672
 16062 MB RAM detected; reserving 8031 MB for main workspace.
 59743 variants loaded from .bim file.
 2504 people (0 males, 0 females, 2504 ambiguous) loaded from .fam.
 Ambiguous sex IDs written to
 data/preprocessing/chr22_preprocessed_train_subset.nosex .
---keep: 1752 people remaining.
+--keep: 2003 people remaining.
 Using 1 thread (no multithreaded calculations invoked).
-Before main variant filters, 1752 founders and 0 nonfounders present.
+Before main variant filters, 2003 founders and 0 nonfounders present.
 Calculating allele frequencies... done.
 Total genotyping rate in remaining samples is in [0.9999995, 1).
-59743 variants and 1752 people pass filters and QC.
+59743 variants and 2003 people pass filters and QC.
 Note: No phenotypes present.
 --make-bed to data/preprocessing/chr22_preprocessed_train_subset.bed +
 data/preprocessing/chr22_preprocessed_train_subset.bim +
 data/preprocessing/chr22_preprocessed_train_subset.fam ... done.
 
-End time: Tue Feb 17 20:39:51 2026
+End time: Wed Feb 18 01:14:32 2026

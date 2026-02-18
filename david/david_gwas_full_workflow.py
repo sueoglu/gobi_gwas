@@ -2,10 +2,12 @@ import os
 import subprocess
 
 import matplotlib.pyplot as plt
+import seaborn as sns
 import numpy as np
 import pandas as pd
 import scipy
 from limix_lmm import LMM
+from matplotlib.pyplot import title
 from pandas_plink import read_plink, write_plink1_bin
 from scipy.stats import spearmanr
 from sklearn.linear_model import LinearRegression
@@ -142,7 +144,7 @@ count_v = 0
 count_h = 0
 
 indices = np.arange(X_real.shape[0])
-train_idx, test_idx = train_test_split(indices, test_size=0.3, random_state=42)
+train_idx, test_idx = train_test_split(indices, test_size=0.2, random_state=42)
 X_train = X_real[train_idx]
 X_test = X_real[test_idx]
 train_fam = fam.iloc[train_idx][['fid', 'iid']]
@@ -155,6 +157,11 @@ subprocess.run([r"plink_win64_20250819/plink.exe",
 bfile = r'data/preprocessing/chr22_preprocessed_train_subset'
 bim_train, fam_train, G_train = read_plink(bfile)
 
+pcs = pd.read_csv(r"../oyku/data/pca/chr22_pca.eigenvec", sep=r'\s+', header=None, engine='python')
+pcs.columns = ["FID","IID"] + [f"PC{i}" for i in range(1, pcs.shape[1]-1)]
+pheno = fam[["fid", "iid"]].copy()
+pheno.columns = ["FID", "IID"]
+
 for h2 in h2s:
     for n_c in n_causals:
         idx_caus = rng.choice(X_real.shape[1], size=n_c, replace=False)
@@ -162,7 +169,12 @@ for h2 in h2s:
 
         y, beta_real = simulate_pheno(X_real, idx_caus, var_expl)
 
-        F = np.ones_like(y)
+        pheno["y"] = y.reshape(-1)
+        df = pheno.merge(pcs, on=["FID", "IID"], how="inner", validate="one_to_one")
+        k = 10
+        F = np.column_stack([np.ones((df.shape[0], 1)), df[[f"PC{i}" for i in range(1, k+1)]].to_numpy()])
+
+        """
         lmm = LMM(y, F)
         lmm.process(X_real)
         pv = lmm.getPv()
@@ -171,6 +183,7 @@ for h2 in h2s:
 
         os.makedirs(f"plots/h2_{h2}/causal_{n_c}", exist_ok=True)
 
+        
         qq_plot(None, pv, idx_caus)
         plt.title(f"QQ plot (n_causals = {n_c} and h2 = {h2})")
         plt.savefig(f"plots/h2_{h2}/causal_{n_c}/qq_h2_{h2}_causal_{n_c}.png")
@@ -189,6 +202,7 @@ for h2 in h2s:
         plt.tight_layout()
         plt.savefig(f"plots/h2_{h2}/causal_{n_c}/manhattan_h2_{h2}_causal_{n_c}.png")
         plt.close()
+        """
 
         bim_train_snps = bim_train['snp'].iloc[idx_caus].to_numpy()
         bim_full_snps = bim['snp'].iloc[idx_caus].to_numpy()
@@ -199,8 +213,8 @@ for h2 in h2s:
         y_train = y[train_idx]
         y_test = y[test_idx]
 
-        F = np.ones_like(y_train)
-        lmm = LMM(y_train, F)
+        F_train = F[train_idx]
+        lmm = LMM(y_train, F_train)
         lmm.process(X_train)
         pv = lmm.getPv()
         beta = lmm.getBetaSNP()
@@ -223,16 +237,17 @@ for h2 in h2s:
                         "--clump-field", "P",
                         "--clump-p1", "1e-4",
                         "--clump-p2", "1e-2",
-                        "--clump-r2", "0.1",
+                        "--clump-r2", "0.07",
+                        "--clump-kb", "200",
                         "--out", r"data/clumping/tmp_clumped"])
 
         clumped = pd.read_csv(
-            r"data/clumping/tmp_clumped.clumped", sep=r'\s+'
+            r"data/clumping/tmp_clumped.clumped", sep=r'\s+', engine='python'
             )
 
         selected_snps = clumped['SNP'].values
 
-        snp_ids = bim['snp'].values  # from full dataset
+        snp_ids = bim_train['snp'].values  # from full dataset
 
         # Boolean mask of selected SNPs
         mask = np.isin(snp_ids, selected_snps)
@@ -242,7 +257,7 @@ for h2 in h2s:
         X_test_sel = X_test[:, mask]
 
         # Train linear model
-        model = LinearRegression(fit_intercept=False)
+        model = LinearRegression(fit_intercept=True)
         model.fit(X_train_sel, y_train)
 
         # Predictions
@@ -263,5 +278,17 @@ r2_df = pd.DataFrame(r2_matrix, index=h2s, columns=n_causals)
 spearman_df = pd.DataFrame(spearman_matrix, index=h2s, columns=n_causals)
 
 os.makedirs("data/performances", exist_ok=True)
-r2_df.to_csv(r"data/performances/r2_results.csv")
-spearman_df.to_csv(r"data/performances/spearman_results.csv")
+r2_df.to_csv(r"data/performances/02split_r2_results.csv")
+spearman_df.to_csv(r"data/performances/02split_spearman_results.csv")
+
+g = sns.heatmap(r2_df, annot=False, cmap="Blues")
+g.set(xlabel='Number of causal SNPs', ylabel='Heritability')
+g.set_title("R² Score")
+plt.savefig("data/performances/02split_r2_heatmap.png")
+plt.close()
+
+g = sns.heatmap(spearman_df, annot=False, cmap="YlOrBr")
+g.set(xlabel='Number of causal SNPs', ylabel='Heritability')
+g.set_title("Spearman Correlation")
+plt.savefig("data/performances/02split_spearman_heatmap.png")
+plt.close()
