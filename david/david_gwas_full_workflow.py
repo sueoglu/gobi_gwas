@@ -328,18 +328,18 @@ for h2 in h2s:
 r2_df = pd.DataFrame(r2_matrix, index=h2s, columns=n_causals)
 spearman_df = pd.DataFrame(spearman_matrix, index=h2s, columns=n_causals)
 
-os.makedirs("data/performances", exist_ok=True)
+os.makedirs("performances", exist_ok=True)
 r2_df.to_csv(r"data/performances/02split_r2_results.csv")
-spearman_df.to_csv(r"data/performances/02split_spearman_results.csv")
+spearman_df.to_csv(r"performances/02split_spearman_results.csv")
 
 g = sns.heatmap(r2_df, annot=False, cmap="Blues")
 g.set(xlabel='Number of causal SNPs', ylabel='Heritability')
 g.set_title("R² Score")
-plt.savefig("data/performances/02split_r2_heatmap.png")
+plt.savefig("performances/02split_r2_heatmap.png")
 plt.close()
 
 g = sns.heatmap(spearman_df, annot=False, cmap="YlOrBr")
 g.set(xlabel='Number of causal SNPs', ylabel='Heritability')
 g.set_title("Spearman Correlation")
-plt.savefig("data/performances/02split_spearman_heatmap.png")
+plt.savefig("performances/02split_spearman_heatmap.png")
 plt.close()
