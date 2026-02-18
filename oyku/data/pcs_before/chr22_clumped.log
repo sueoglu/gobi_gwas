@@ -12,9 +12,9 @@ Options in effect:
 
 Hostname: Oykus-MacBook-Pro.local
 Working directory: /Users/oykusuoglu/gobi/gobi_gwas/oyku/notebooks
-Start time: Wed Feb 18 11:34:02 2026
+Start time: Wed Feb 18 12:52:28 2026
 
-Random number seed: 1771410842
+Random number seed: 1771415548
 16384 MB RAM detected; reserving 8192 MB for main workspace.
 59743 variants loaded from .bim file.
 2504 people (0 males, 0 females, 2504 ambiguous) loaded from .fam.
@@ -30,4 +30,4 @@ Note: No phenotypes present.
 Results written to
 /Users/oykusuoglu/gobi/gobi_gwas/oyku/data/pcs_before/chr22_clumped.clumped .
 
-End time: Wed Feb 18 11:34:02 2026
+End time: Wed Feb 18 12:52:28 2026
