@@ -7,9 +7,9 @@ Options in effect:
 
 Hostname: DAVIVOBOOK
 Working directory: C:\Users\david\PycharmProjects\GoBi\gobi_gwas\david
-Start time: Wed Feb 18 00:51:45 2026
+Start time: Wed Feb 18 01:14:32 2026
 
-Random number seed: 1771372305
+Random number seed: 1771373672
 16062 MB RAM detected; reserving 8031 MB for main workspace.
 59743 variants loaded from .bim file.
 2504 people (0 males, 0 females, 2504 ambiguous) loaded from .fam.
@@ -26,4 +26,4 @@ Note: No phenotypes present.
 data/preprocessing/chr22_preprocessed_train_subset.bim +
 data/preprocessing/chr22_preprocessed_train_subset.fam ... done.
 
-End time: Wed Feb 18 00:51:46 2026
+End time: Wed Feb 18 01:14:32 2026

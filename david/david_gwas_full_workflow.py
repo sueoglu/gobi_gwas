@@ -174,7 +174,7 @@ for h2 in h2s:
         k = 10
         F = np.column_stack([np.ones((df.shape[0], 1)), df[[f"PC{i}" for i in range(1, k+1)]].to_numpy()])
 
-        #"""
+        """
         lmm = LMM(y, F)
         lmm.process(X_real)
         pv = lmm.getPv()
@@ -202,7 +202,7 @@ for h2 in h2s:
         plt.tight_layout()
         plt.savefig(f"plots/h2_{h2}/causal_{n_c}/manhattan_h2_{h2}_causal_{n_c}.png")
         plt.close()
-        #"""
+        """
 
         bim_train_snps = bim_train['snp'].iloc[idx_caus].to_numpy()
         bim_full_snps = bim['snp'].iloc[idx_caus].to_numpy()
@@ -247,7 +247,7 @@ for h2 in h2s:
 
         selected_snps = clumped['SNP'].values
 
-        snp_ids = bim['snp'].values  # from full dataset
+        snp_ids = bim_train['snp'].values  # from full dataset
 
         # Boolean mask of selected SNPs
         mask = np.isin(snp_ids, selected_snps)
