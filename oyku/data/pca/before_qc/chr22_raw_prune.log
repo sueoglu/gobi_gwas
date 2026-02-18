@@ -1,0 +1,32 @@
+PLINK v1.9.0-b.7.11 64-bit (19 Aug 2025)
+Options in effect:
+  --bfile /Users/oykusuoglu/gobi/gobi_gwas/oyku/data/raw/ALL.chr22_GRCh38.genotypes.20170504
+  --indep-pairwise 200 50 0.2
+  --out /Users/oykusuoglu/gobi/gobi_gwas/oyku/data/pca/before_qc/chr22_raw_prune
+
+Hostname: Oykus-MacBook-Pro.local
+Working directory: /Users/oykusuoglu/gobi/gobi_gwas/oyku/notebooks
+Start time: Wed Feb 18 10:34:21 2026
+
+Random number seed: 1771407261
+16384 MB RAM detected; reserving 8192 MB for main workspace.
+109827 variants loaded from .bim file.
+2504 people (0 males, 0 females, 2504 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to
+/Users/oykusuoglu/gobi/gobi_gwas/oyku/data/pca/before_qc/chr22_raw_prune.nosex
+.
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 2504 founders and 0 nonfounders present.
+Calculating allele frequencies... done.
+Total genotyping rate is 0.999911.
+109827 variants and 2504 people pass filters and QC.
+Note: No phenotypes present.
+Pruned 102281 variants from chromosome 22, leaving 7546.
+Pruning complete.  102281 of 109827 variants removed.
+Marker lists written to
+/Users/oykusuoglu/gobi/gobi_gwas/oyku/data/pca/before_qc/chr22_raw_prune.prune.in
+and
+/Users/oykusuoglu/gobi/gobi_gwas/oyku/data/pca/before_qc/chr22_raw_prune.prune.out
+.
+
+End time: Wed Feb 18 10:34:21 2026
