@@ -1,0 +1,33 @@
+PLINK v1.9.0-b.7.11 64-bit (19 Aug 2025)
+Options in effect:
+  --bfile /Users/oykusuoglu/gobi/gobi_gwas/oyku/data/pca/before_qc/qc/chr22_step3_sampleqc
+  --clump /Users/oykusuoglu/gobi/gobi_gwas/oyku/notebooks/gwas_for_clump.txt
+  --clump-field P
+  --clump-kb 250
+  --clump-p1 1e-4
+  --clump-p2 1e-2
+  --clump-r2 0.1
+  --clump-snp-field SNP
+  --out /Users/oykusuoglu/gobi/gobi_gwas/oyku/data/pcs_before/chr22_clumped
+
+Hostname: Oykus-MacBook-Pro.local
+Working directory: /Users/oykusuoglu/gobi/gobi_gwas/oyku/notebooks
+Start time: Wed Feb 18 11:34:02 2026
+
+Random number seed: 1771410842
+16384 MB RAM detected; reserving 8192 MB for main workspace.
+59743 variants loaded from .bim file.
+2504 people (0 males, 0 females, 2504 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to
+/Users/oykusuoglu/gobi/gobi_gwas/oyku/data/pcs_before/chr22_clumped.nosex .
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 2504 founders and 0 nonfounders present.
+Calculating allele frequencies... done.
+Total genotyping rate is in [0.9999995, 1).
+59743 variants and 2504 people pass filters and QC.
+Note: No phenotypes present.
+--clump: 40 clumps formed from 1480 top variants.
+Results written to
+/Users/oykusuoglu/gobi/gobi_gwas/oyku/data/pcs_before/chr22_clumped.clumped .
+
+End time: Wed Feb 18 11:34:02 2026
