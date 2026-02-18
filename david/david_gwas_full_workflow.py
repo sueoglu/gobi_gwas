@@ -203,7 +203,7 @@ for h2 in h2s:
         k = 10
         F = np.column_stack([np.ones((df.shape[0], 1)), df[[f"PC{i}" for i in range(1, k+1)]].to_numpy()]).astype(np.float64)
 
-        #"""
+        """
         lmm = LMM(y, F)
         lmm.process(X_real)
         pv = lmm.getPv()
@@ -231,7 +231,7 @@ for h2 in h2s:
         plt.tight_layout()
         plt.savefig(f"plots/h2_{h2}/causal_{n_c}/manhattan_h2_{h2}_causal_{n_c}.png")
         plt.close()
-        #"""
+        """
 
         bim_train_snps = bim_train['snp'].iloc[idx_caus].to_numpy()
         bim_full_snps = bim['snp'].iloc[idx_caus].to_numpy()
@@ -248,6 +248,28 @@ for h2 in h2s:
         pv = lmm.getPv()
         beta = lmm.getBetaSNP()
         beta_ste = lmm.getBetaSNPste()
+
+        os.makedirs(f"plots/train_dataset/h2_{h2}/causal_{n_c}", exist_ok=True)
+
+        qq_plot(None, pv, idx_caus)
+        plt.title(f"QQ plot (n_causals = {n_c} and h2 = {h2})")
+        plt.savefig(f"plots/train_dataset/h2_{h2}/causal_{n_c}/qq_h2_{h2}_causal_{n_c}.png")
+        plt.close()
+
+        x = bim_train['pos'].values
+        plt.figure(figsize=(8, 6))
+        plt.subplot(211)
+        plt.title(f'Training split effect size (n_causals = {n_c})')
+        plt.plot(x, beta, '.k')
+        plt.ylabel('effect size')
+        plt.subplot(212)
+        plt.title(f'GWAS results (n_causals = {n_c} and h2 = {h2})')
+        plt.plot(x, -np.log10(pv), '.k')
+        plt.ylabel('-log$_{10}$ P')
+        plt.tight_layout()
+        plt.savefig(f"plots/train_dataset/h2_{h2}/causal_{n_c}/manhattan_h2_{h2}_causal_{n_c}.png")
+        plt.close()
+        # """
 
         gwas_df = pd.DataFrame({
             'CHR': bim_train['chrom'],
