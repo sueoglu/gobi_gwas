@@ -1,0 +1,33 @@
+PLINK v1.9.0-b.7.11 64-bit (19 Aug 2025)
+Options in effect:
+  --bfile ../universal_data/preprocessing/chr22_preprocessed_train_subset
+  --clump ../universal_data/gwas_results/h2_0.3/causal_10/train_h2_0.3_causal_10_gwas_results.txt
+  --clump-field P
+  --clump-kb 200
+  --clump-p1 1e-4
+  --clump-p2 1e-2
+  --clump-r2 0.07
+  --clump-snp-field SNP
+  --out ../universal_data/clumping/h2_0.3/causal_10/h2_0.3_causal_10_clumped
+
+Hostname: DAVIVOBOOK
+Working directory: C:\Users\david\PycharmProjects\GoBi\gobi_gwas\david
+Start time: Wed Feb 18 15:32:16 2026
+
+Random number seed: 1771425136
+16062 MB RAM detected; reserving 8031 MB for main workspace.
+59743 variants loaded from .bim file.
+2003 people (0 males, 0 females, 2003 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to
+../universal_data/clumping/h2_0.3/causal_10/h2_0.3_causal_10_clumped.nosex .
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 2003 founders and 0 nonfounders present.
+Calculating allele frequencies... done.
+Total genotyping rate is in [0.9999995, 1).
+59743 variants and 2003 people pass filters and QC.
+Note: No phenotypes present.
+--clump: 22 clumps formed from 555 top variants.
+Results written to
+../universal_data/clumping/h2_0.3/causal_10/h2_0.3_causal_10_clumped.clumped .
+
+End time: Wed Feb 18 15:32:16 2026

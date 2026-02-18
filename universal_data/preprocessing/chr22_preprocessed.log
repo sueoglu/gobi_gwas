@@ -1,0 +1,29 @@
+PLINK v1.9.0-b.7.11 64-bit (19 Aug 2025)
+Options in effect:
+  --bfile ../universal_data/preprocessing/chr22_common
+  --make-bed
+  --mind 0.02
+  --out ../universal_data/preprocessing/chr22_preprocessed
+
+Hostname: DAVIVOBOOK
+Working directory: C:\Users\david\PycharmProjects\GoBi\gobi_gwas\david
+Start time: Wed Feb 18 15:30:36 2026
+
+Random number seed: 1771425036
+16062 MB RAM detected; reserving 8031 MB for main workspace.
+59743 variants loaded from .bim file.
+2504 people (0 males, 0 females, 2504 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to
+../universal_data/preprocessing/chr22_preprocessed.nosex .
+0 people removed due to missing genotype data (--mind).
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 2504 founders and 0 nonfounders present.
+Calculating allele frequencies... done.
+Total genotyping rate is in [0.9999995, 1).
+59743 variants and 2504 people pass filters and QC.
+Note: No phenotypes present.
+--make-bed to ../universal_data/preprocessing/chr22_preprocessed.bed +
+../universal_data/preprocessing/chr22_preprocessed.bim +
+../universal_data/preprocessing/chr22_preprocessed.fam ... done.
+
+End time: Wed Feb 18 15:30:37 2026

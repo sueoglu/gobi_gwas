@@ -12,9 +12,9 @@ Options in effect:
 
 Hostname: DAVIVOBOOK
 Working directory: C:\Users\david\PycharmProjects\GoBi\gobi_gwas\david
-Start time: Wed Feb 18 13:06:07 2026
+Start time: Wed Feb 18 14:41:34 2026
 
-Random number seed: 1771416367
+Random number seed: 1771422094
 16062 MB RAM detected; reserving 8031 MB for main workspace.
 59743 variants loaded from .bim file.
 2003 people (0 males, 0 females, 2003 ambiguous) loaded from .fam.
@@ -28,4 +28,4 @@ Note: No phenotypes present.
 --clump: 43 clumps formed from 889 top variants.
 Results written to data/clumping/tmp_clumped.clumped .
 
-End time: Wed Feb 18 13:06:07 2026
+End time: Wed Feb 18 14:41:34 2026
