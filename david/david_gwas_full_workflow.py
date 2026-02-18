@@ -56,6 +56,35 @@ subprocess.run([r"plink_win64_20250819/plink.exe",
                 "--make-bed",
                 "--out", r"data/preprocessing/chr22_preprocessed"])
 
+subprocess.run([r"plink_win64_20250819/plink.exe",
+                "--bfile", r"../ALL.chr22_GRCh38.genotypes.20170504/ALL.chr22_GRCh38.genotypes.20170504",
+                "--indep-pairwise", "200", "50", "0.2",
+                "--out", r"data/preprocessing/chr22_pruned"])
+
+subprocess.run([r"plink_win64_20250819/plink.exe",
+                "--bfile", r"../ALL.chr22_GRCh38.genotypes.20170504/ALL.chr22_GRCh38.genotypes.20170504",
+                "--extract", r"data/preprocessing/chr22_pruned.prune.in",
+                "--pca", "10",
+                "--out", r"data/preprocessing/chr22_pca10"])
+
+eigenvec = r"data/preprocessing/chr22_pca10.eigenvec"
+
+df = pd.read_csv(eigenvec, sep=r"\s+", header=None)
+ncols = df.shape[1]
+pc_cols = list(range(2, ncols))  # columns 2..end are PCs
+
+# z-score each PC across individuals
+pcs = df.iloc[:, pc_cols]
+pcs_z = (pcs - pcs.mean(axis=0)) / pcs.std(axis=0, ddof=0)
+
+df_z = df.copy()
+df_z.iloc[:, pc_cols] = pcs_z
+
+df_z.columns = ["FID", "IID"] + [f"PC{i}" for i in range(1, len(pc_cols)+1)]
+
+out = eigenvec.replace(".eigenvec", ".eigenvec.zscore")
+df_z.to_csv(out, sep="\t", index=False)
+
 # load genetic data
 bfile = r'data/preprocessing/chr22_preprocessed'
 bim, fam, G = read_plink(bfile)
@@ -157,7 +186,7 @@ subprocess.run([r"plink_win64_20250819/plink.exe",
 bfile = r'data/preprocessing/chr22_preprocessed_train_subset'
 bim_train, fam_train, G_train = read_plink(bfile)
 
-pcs = pd.read_csv(r"../oyku/data/pca/chr22_pca.eigenvec", sep=r'\s+', header=None, engine='python')
+pcs = pd.read_csv(r"data/preprocessing/chr22_pca10.eigenvec.zscore", sep=r'\s+', header=None, engine='python')
 pcs.columns = ["FID","IID"] + [f"PC{i}" for i in range(1, pcs.shape[1]-1)]
 pheno = fam[["fid", "iid"]].copy()
 pheno.columns = ["FID", "IID"]
@@ -172,9 +201,9 @@ for h2 in h2s:
         pheno["y"] = y.reshape(-1)
         df = pheno.merge(pcs, on=["FID", "IID"], how="inner", validate="one_to_one")
         k = 10
-        F = np.column_stack([np.ones((df.shape[0], 1)), df[[f"PC{i}" for i in range(1, k+1)]].to_numpy()])
+        F = np.column_stack([np.ones((df.shape[0], 1)), df[[f"PC{i}" for i in range(1, k+1)]].to_numpy()]).astype(np.float64)
 
-        """
+        #"""
         lmm = LMM(y, F)
         lmm.process(X_real)
         pv = lmm.getPv()
@@ -202,7 +231,7 @@ for h2 in h2s:
         plt.tight_layout()
         plt.savefig(f"plots/h2_{h2}/causal_{n_c}/manhattan_h2_{h2}_causal_{n_c}.png")
         plt.close()
-        """
+        #"""
 
         bim_train_snps = bim_train['snp'].iloc[idx_caus].to_numpy()
         bim_full_snps = bim['snp'].iloc[idx_caus].to_numpy()
