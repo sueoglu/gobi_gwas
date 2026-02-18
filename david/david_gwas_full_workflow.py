@@ -259,7 +259,7 @@ for h2 in h2s:
         x = bim_train['pos'].values
         plt.figure(figsize=(8, 6))
         plt.subplot(211)
-        plt.title(f'Training split effect size (n_causals = {n_c})')
+        plt.title(f'Estimated effect size (n_causals = {n_c})')
         plt.plot(x, beta, '.k')
         plt.ylabel('effect size')
         plt.subplot(212)
