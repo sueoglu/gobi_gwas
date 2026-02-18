@@ -203,7 +203,7 @@ for h2 in h2s:
         k = 10
         F = np.column_stack([np.ones((df.shape[0], 1)), df[[f"PC{i}" for i in range(1, k+1)]].to_numpy()]).astype(np.float64)
 
-        """
+        #"""
         lmm = LMM(y, F)
         lmm.process(X_real)
         pv = lmm.getPv()
@@ -231,7 +231,7 @@ for h2 in h2s:
         plt.tight_layout()
         plt.savefig(f"plots/h2_{h2}/causal_{n_c}/manhattan_h2_{h2}_causal_{n_c}.png")
         plt.close()
-        """
+        #"""
 
         bim_train_snps = bim_train['snp'].iloc[idx_caus].to_numpy()
         bim_full_snps = bim['snp'].iloc[idx_caus].to_numpy()
@@ -249,6 +249,7 @@ for h2 in h2s:
         beta = lmm.getBetaSNP()
         beta_ste = lmm.getBetaSNPste()
 
+        # """
         os.makedirs(f"plots/train_dataset/h2_{h2}/causal_{n_c}", exist_ok=True)
 
         qq_plot(None, pv, idx_caus)
