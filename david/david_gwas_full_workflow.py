@@ -210,7 +210,7 @@ for h2 in h2s:
         beta = lmm.getBetaSNP()
         beta_ste = lmm.getBetaSNPste()
 
-        os.makedirs(f"plots/h2_{h2}/causal_{n_c}", exist_ok=True)
+        os.makedirs(f"plots/preprocessed_dataset/h2_{h2}/causal_{n_c}", exist_ok=True)
 
         
         qq_plot(None, pv, idx_caus)
@@ -221,7 +221,7 @@ for h2 in h2s:
         x = bim['pos'].values
         plt.figure(figsize=(8, 6))
         plt.subplot(211)
-        plt.title(f'Real effect size (n_causals = {n_c})')
+        plt.title(f'Real effect size (n_causals = {n_c} and h2 = {h2})')
         plt.plot(x, beta_real, '.k')
         plt.ylabel('effect size')
         plt.subplot(212)
@@ -259,7 +259,7 @@ for h2 in h2s:
         x = bim_train['pos'].values
         plt.figure(figsize=(8, 6))
         plt.subplot(211)
-        plt.title(f'Estimated effect size (n_causals = {n_c})')
+        plt.title(f'Estimated effect size (n_causals = {n_c} and h2 = {h2})')
         plt.plot(x, beta, '.k')
         plt.ylabel('effect size')
         plt.subplot(212)
