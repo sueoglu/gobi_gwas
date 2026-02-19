@@ -81,7 +81,7 @@ pcs_z = (pcs - pcs.mean(axis=0)) / pcs.std(axis=0, ddof=0)
 df_z = df.copy()
 df_z.iloc[:, pc_cols] = pcs_z
 
-df_z.columns = ["FID", "IID"] + [f"PC{i}" for i in range(1, len(pc_cols)+1)]
+df_z.columns = ["FID", "IID"] + [f"PC{i}" for i in range(1, len(pc_cols) + 1)]
 
 out = eigenvec.replace(".eigenvec", ".eigenvec.zscore")
 df_z.to_csv(out, sep="\t", index=False)
@@ -92,9 +92,19 @@ bim, fam, G = read_plink(bfile)
 
 X_real = G.compute().T
 
-rng = np.random.default_rng(42)
+# standardization
+mu_full = X_real.mean(axis=0)
+sd_full = X_real.std(axis=0, ddof=0)
+keep_full = sd_full > 1e-12
+keep_idx = np.where(keep_full)[0]
+standardized_X_real = (X_real[:, keep_full] - mu_full[keep_full]) / sd_full[keep_full]
+bim = bim.iloc[keep_idx].copy().reset_index(drop=True)
+bim["orig_bim_idx"] = keep_idx
 
-def simulate_pheno(X, idx_caus, var_expl, direction=None):
+def simulate_pheno(X, idx_caus, var_expl, direction=None, rng=None):
+    if rng is None:
+        rng = np.random.default_rng(42)
+
     # Ensure that the number of causal variant indices matches the number of variances explained.
     assert len(idx_caus) == len(var_expl)
 
@@ -137,6 +147,7 @@ def simulate_pheno(X, idx_caus, var_expl, direction=None):
 
     return y, beta_real
 
+
 def qq_plot(ax, p_values, idx_caus):
     """
     Create a QQ plot given a list of p-values.
@@ -164,40 +175,44 @@ def qq_plot(ax, p_values, idx_caus):
     plt.legend()
 
 
-
-n_causals = [10,20,30,40,50,60,70,80,90,100]
-h2s = [0.1,0.2,0.3,0.4,0.5,0.6]
+n_causals = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+h2s = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6]
 
 r2_matrix = np.zeros((len(h2s), len(n_causals)))
 spearman_matrix = np.zeros((len(h2s), len(n_causals)))
 count_v = 0
 count_h = 0
 
-indices = np.arange(X_real.shape[0])
+indices = np.arange(standardized_X_real.shape[0])
 train_idx, test_idx = train_test_split(indices, test_size=0.2, random_state=42)
-X_train = X_real[train_idx]
-X_test = X_real[test_idx]
+X_train = standardized_X_real[train_idx]
+X_test = standardized_X_real[test_idx]
 train_fam = fam.iloc[train_idx][['fid', 'iid']]
 train_fam.to_csv("../universal_data/preprocessing/train_fam.txt", sep=' ', index=False, header=False)
+kept_snps = bim['snp']
+kept_snps.to_csv("../universal_data/preprocessing/kept_snps.txt", index=False, header=False)
 subprocess.run([r"plink_win64_20250819/plink.exe",
                 "--bfile", "../universal_data/preprocessing/chr22_preprocessed",
                 "--keep", r"../universal_data/preprocessing/train_fam.txt",
+                "--extract", "../universal_data/preprocessing/kept_snps.txt",
                 "--make-bed",
-                "--out", "../universal_data/preprocessing/chr22_preprocessed_train_subset",])
+                "--out", "../universal_data/preprocessing/chr22_preprocessed_train_subset", ])
 bfile = r'../universal_data/preprocessing/chr22_preprocessed_train_subset'
 bim_train, fam_train, G_train = read_plink(bfile)
 
-pcs = pd.read_csv(r"../universal_data/preprocessing/chr22_pca10.eigenvec.zscore", sep=r'\s+', header=None, engine='python')
-pcs.columns = ["FID","IID"] + [f"PC{i}" for i in range(1, pcs.shape[1]-1)]
+pcs = pd.read_csv(r"../universal_data/preprocessing/chr22_pca10.eigenvec.zscore", sep=r'\s+', header=0,
+                  engine='python')
+pcs.columns = ["FID", "IID"] + [f"PC{i}" for i in range(1, pcs.shape[1] - 1)]
 pheno = fam[["fid", "iid"]].copy()
 pheno.columns = ["FID", "IID"]
 
 for h2 in h2s:
     for n_c in n_causals:
-        idx_caus = rng.choice(X_real.shape[1], size=n_c, replace=False)
+        rng = np.random.default_rng(42)
+        idx_caus = rng.choice(standardized_X_real.shape[1], size=n_c, replace=False)
         var_expl = np.full(n_c, h2 / n_c)
 
-        y, beta_real = simulate_pheno(X_real, idx_caus, var_expl)
+        y, beta_real = simulate_pheno(standardized_X_real, idx_caus, var_expl, rng=rng)
 
         pheno["y"] = y.reshape(-1)
         df = pheno.merge(pcs, on=["FID", "IID"], how="inner", validate="one_to_one")
@@ -206,7 +221,7 @@ for h2 in h2s:
 
         #"""
         lmm = LMM(y, F)
-        lmm.process(X_real)
+        lmm.process(standardized_X_real)
         pv = lmm.getPv()
         beta = lmm.getBetaSNP()
         beta_ste = lmm.getBetaSNPste()

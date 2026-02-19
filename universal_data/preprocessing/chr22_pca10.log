@@ -7,9 +7,9 @@ Options in effect:
 
 Hostname: DAVIVOBOOK
 Working directory: C:\Users\david\PycharmProjects\GoBi\gobi_gwas\david
-Start time: Wed Feb 18 15:30:38 2026
+Start time: Thu Feb 19 16:27:17 2026
 
-Random number seed: 1771425038
+Random number seed: 1771514837
 16062 MB RAM detected; reserving 8031 MB for main workspace.
 109827 variants loaded from .bim file.
 2504 people (0 males, 0 females, 2504 ambiguous) loaded from .fam.
@@ -27,4 +27,4 @@ Relationship matrix calculation complete.
 --pca: Results saved to ../universal_data/preprocessing/chr22_pca10.eigenval
 and ../universal_data/preprocessing/chr22_pca10.eigenvec .
 
-End time: Wed Feb 18 15:30:40 2026
+End time: Thu Feb 19 16:27:19 2026
