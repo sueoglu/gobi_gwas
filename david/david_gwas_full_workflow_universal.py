@@ -259,6 +259,7 @@ for h2 in h2s:
         y_test = y[test_idx]
 
         F_train = F[train_idx]
+        F_test = F[test_idx]
         lmm = LMM(y_train, F_train)
         lmm.process(X_train)
         pv = lmm.getPv()
@@ -324,12 +325,15 @@ for h2 in h2s:
         X_train_sel = X_train[:, mask]
         X_test_sel = X_test[:, mask]
 
+        X_train_lr = np.column_stack([X_train_sel, F_train[:, 1:]])
+        X_test_lr = np.column_stack([X_test_sel, F_test[:, 1:]])
+
         # Train linear model
         model = LinearRegression(fit_intercept=True)
-        model.fit(X_train_sel, y_train)
+        model.fit(X_train_lr, y_train)
 
         # Predictions
-        y_pred_test = model.predict(X_test_sel)
+        y_pred_test = model.predict(X_test_lr)
 
         # Evaluate
         r2 = r2_score(y_test, y_pred_test)
