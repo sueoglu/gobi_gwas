@@ -12,9 +12,9 @@ Options in effect:
 
 Hostname: DAVIVOBOOK
 Working directory: C:\Users\david\PycharmProjects\GoBi\gobi_gwas\david
-Start time: Thu Feb 19 16:30:52 2026
+Start time: Mon Feb 23 14:42:24 2026
 
-Random number seed: 1771515052
+Random number seed: 1771854144
 16062 MB RAM detected; reserving 8031 MB for main workspace.
 59740 variants loaded from .bim file.
 2003 people (0 males, 0 females, 2003 ambiguous) loaded from .fam.
@@ -26,9 +26,9 @@ Calculating allele frequencies... done.
 Total genotyping rate is exactly 1.
 59740 variants and 2003 people pass filters and QC.
 Note: No phenotypes present.
---clump: 31 clumps formed from 512 top variants.
+--clump: 36 clumps formed from 470 top variants.
 Results written to
 ../universal_data/clumping/h2_0.5/causal_100/h2_0.5_causal_100_clumped.clumped
 .
 
-End time: Thu Feb 19 16:30:52 2026
+End time: Mon Feb 23 14:42:24 2026

@@ -58,12 +58,12 @@ subprocess.run([r"plink_win64_20250819/plink.exe",
                 "--out", r"../universal_data/preprocessing/chr22_preprocessed"])
 
 subprocess.run([r"plink_win64_20250819/plink.exe",
-                "--bfile", r"../ALL.chr22_GRCh38.genotypes.20170504/ALL.chr22_GRCh38.genotypes.20170504",
+                "--bfile", r"../universal_data/preprocessing/chr22_preprocessed",
                 "--indep-pairwise", "200", "50", "0.2",
                 "--out", r"../universal_data/preprocessing/chr22_pruned"])
 
 subprocess.run([r"plink_win64_20250819/plink.exe",
-                "--bfile", r"../ALL.chr22_GRCh38.genotypes.20170504/ALL.chr22_GRCh38.genotypes.20170504",
+                "--bfile", r"../universal_data/preprocessing/chr22_preprocessed",
                 "--extract", r"../universal_data/preprocessing/chr22_pruned.prune.in",
                 "--pca", "10",
                 "--out", r"../universal_data/preprocessing/chr22_pca10"])
@@ -350,17 +350,17 @@ r2_df = pd.DataFrame(r2_matrix, index=h2s, columns=n_causals)
 spearman_df = pd.DataFrame(spearman_matrix, index=h2s, columns=n_causals)
 
 os.makedirs("../universal_data/models/LinearRegression/performances", exist_ok=True)
-r2_df.to_csv(r"../universal_data/models/LinearRegression/performances/r2_results.csv")
-spearman_df.to_csv(r"../universal_data/models/LinearRegression/performances/spearman_results.csv")
+r2_df.to_csv(r"../universal_data/models/LinearRegression/performances/seed42_r2_results.csv")
+spearman_df.to_csv(r"../universal_data/models/LinearRegression/performances/seed42_spearman_results.csv")
 
 g = sns.heatmap(r2_df, annot=False, cmap="Blues")
 g.set(xlabel='Number of causal SNPs', ylabel='Heritability')
 g.set_title("R² Score")
-plt.savefig("../universal_data/models/LinearRegression/performances/r2_heatmap.png")
+plt.savefig("../universal_data/models/LinearRegression/performances/seed42_r2_heatmap.png")
 plt.close()
 
 g = sns.heatmap(spearman_df, annot=False, cmap="YlOrBr")
 g.set(xlabel='Number of causal SNPs', ylabel='Heritability')
 g.set_title("Spearman Correlation")
-plt.savefig("../universal_data/models/LinearRegression/performances/spearman_heatmap.png")
+plt.savefig("../universal_data/models/LinearRegression/performances/seed42_spearman_heatmap.png")
 plt.close()

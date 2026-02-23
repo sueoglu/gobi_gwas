@@ -58,12 +58,12 @@ subprocess.run([r"plink_win64_20250819/plink.exe",
                 "--out", r"../universal_data/tmp_files/preprocessing/chr22_preprocessed"])
 
 subprocess.run([r"plink_win64_20250819/plink.exe",
-                "--bfile", r"../ALL.chr22_GRCh38.genotypes.20170504/ALL.chr22_GRCh38.genotypes.20170504",
+                "--bfile", r"../universal_data/tmp_files/preprocessing/chr22_preprocessed",
                 "--indep-pairwise", "200", "50", "0.2",
                 "--out", r"../universal_data/tmp_files/preprocessing/chr22_pruned"])
 
 subprocess.run([r"plink_win64_20250819/plink.exe",
-                "--bfile", r"../ALL.chr22_GRCh38.genotypes.20170504/ALL.chr22_GRCh38.genotypes.20170504",
+                "--bfile", r"../universal_data/tmp_files/preprocessing/chr22_preprocessed",
                 "--extract", r"../universal_data/tmp_files/preprocessing/chr22_pruned.prune.in",
                 "--pca", "10",
                 "--out", r"../universal_data/tmp_files/preprocessing/chr22_pca10"])
